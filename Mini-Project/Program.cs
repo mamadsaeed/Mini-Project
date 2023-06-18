@@ -1,4 +1,8 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<ReportContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ReportContext") ?? throw new InvalidOperationException("Connection string 'ReportContext' not found.")));
 
 // Add services to the container.
 
